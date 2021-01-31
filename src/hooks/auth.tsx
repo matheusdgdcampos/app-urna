@@ -7,6 +7,7 @@ import api from '~/services/api';
 interface User {
   codigo: string;
   votou: boolean;
+  tipo: 'standard' | 'admin';
 }
 
 interface AuthContextProps {
