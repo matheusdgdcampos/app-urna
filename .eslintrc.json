@@ -35,6 +35,7 @@
     "no-console": "off",
     "camelcase": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/jsx-pascal-case": "off",
     "no-unused-expressions": "off",
     "no-use-before-define": "off",
     "import/prefer-default-export": "off",

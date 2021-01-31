@@ -37,4 +37,8 @@ export default createGlobalStyle`
   ul, li {
     list-style: none;
   }
+
+  body {
+    font-size: (62.5/100)*16 = 10px;
+  }
 `;
