@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 interface SignInFormData {
-  code: string;
+  codigo: string;
 }
 
 const SignIn = () => {

@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { RouterProps, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-interface CustonRouteProps extends RouterProps {
+import { useAuth } from '~/hooks/auth';
+
+interface CustonRouteProps extends RouteProps {
   isPrivate?: boolean;
 }
 
 const CustonRoute: React.FC<CustonRouteProps> = ({ isPrivate, ...rest }) => {
-  return isPrivate ? <Redirect to="/" exact /> : <Route {...rest} />;
+  const { user } = useAuth();
+
+  return isPrivate && user ? <Route {...rest} /> : <Redirect to="/" exact />;
 };
 
 export default CustonRoute;
