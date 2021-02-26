@@ -1,3 +1,4 @@
+import { ToastProvider } from 'react-toast-notifications';
 import { ThemeProvider } from 'styled-components';
 
 import { AuthProvider } from './hooks/auth';
@@ -11,7 +12,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <AuthProvider>
-        <Routes />
+        <ToastProvider placement="bottom-right">
+          <Routes />
+        </ToastProvider>
       </AuthProvider>
     </ThemeProvider>
   );

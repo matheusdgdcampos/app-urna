@@ -31,7 +31,7 @@ export const LoginContainer_Title = styled.h1`
 `;
 
 export const LoginContainer_Label = styled.label`
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-family: 'Roboto';
   line-height: 1.9rem;
 `;
@@ -57,7 +57,7 @@ export const ButtonSubmitContainer_ButtonSignIn = styled.button`
   padding: 1rem 2.5rem;
   border-radius: 1rem;
   border: none;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   transition: opacity 0.2s;
 
   &:hover {

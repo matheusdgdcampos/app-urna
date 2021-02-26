@@ -1,5 +1,150 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+`;
 
+export const Display = styled.div`
+  flex: 1;
+  background: #c4c4c4;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+
+  height: 100vh;
+`;
+
+export const ActionContainer = styled.div`
+  flex: 1;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+`;
+
+export const Display_Label = styled.span`
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2.8;
+  margin-left: 130px;
+`;
+
+export const Display_InfoCandidateLabel = styled(Display_Label)`
+  margin: 30px 0 0 0;
+`;
+
+export const Display_CandidateInformations = styled.div`
+  background: #f0f0f0;
+  width: 100%;
+  height: 100%;
+
+  max-height: 349px;
+  max-width: 611px;
+
+  margin-bottom: 36px;
+  padding: 20px;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+`;
+
+export const Display_ConfirmButtonVote = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    background: ${({ theme }) => theme.colors.orange_dark};
+    color: #fff;
+    padding: 20px 60px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+
+    border: none;
+    border-radius: 10px;
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+`;
+
+export const NumberButtonsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px 30px;
+
+  width: 100%;
+  height: 100%;
+  max-width: 423px;
+  max-height: 429px;
+
+  button:nth-child(10) {
+    grid-column: 2;
+  }
+`;
+
+export const ButtonNumber = styled.button`
+  width: 70px;
+  height: 70px;
+
+  background: #312e2e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2.4rem;
+  font-family: 'Roboto', sans-serif;
+  line-height: 75px;
+  font-weight: 700;
+
+  border: none;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: opacity(0.9);
+  }
+`;
+
+export const FireButtonActions = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+
+  margin-top: 100px;
+`;
+
+export const CancelAction = styled.button`
+  background: #e02525;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  border: none;
+  padding: 20px;
+  text-transform: uppercase;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: opacity(0.9);
+  }
+`;
+
+export const ClearFieldAction = styled(CancelAction)`
+  background: #f0f0f0;
+  color: ${({ theme }) => theme.colors.black};
+`;
+
+export const ConfirmAction = styled(CancelAction)`
+  background: #37a442;
+  color: #fff;
 `;

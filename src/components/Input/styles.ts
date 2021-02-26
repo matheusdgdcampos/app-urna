@@ -72,7 +72,6 @@ export const Container = styled.div<ContainerProps>`
 
 export const StyledInput = styled.input`
   border: none;
-  font-size: 1.6rem;
   font-family: 'Roboto', sans-serif;
   background: #fff;
   width: 100%;

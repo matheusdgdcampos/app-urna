@@ -1,7 +1,5 @@
 import { createContext, useContext, FC, useState, useCallback } from 'react';
 
-import { useHistory } from 'react-router-dom';
-
 import api from '~/services/api';
 
 interface User {
@@ -31,10 +29,8 @@ export const AuthProvider: FC = ({ children }) => {
     return null;
   });
 
-  const history = useHistory();
-
   const signIn = useCallback(async (codigo: string) => {
-    const response = await api.post<User>('/auth', codigo);
+    const response = await api.post<User>('/auth', { codigo });
 
     localStorage.setItem('@urna', JSON.stringify(response.data));
 
@@ -43,9 +39,8 @@ export const AuthProvider: FC = ({ children }) => {
 
   const signOut = useCallback(async () => {
     localStorage.removeItem('@urna');
-
-    history.push('/');
-  }, [history]);
+    setUser(null);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, signIn, signOut }}>

@@ -19,7 +19,6 @@ export default createGlobalStyle`
   }
 
   button, input {
-    font-size: 1.6rem;
     font-family: 'Roboto', sans-serif;
   }
 
@@ -39,6 +38,6 @@ export default createGlobalStyle`
   }
 
   body {
-    font-size: (62.5/100)*16 = 10px;
+    font-size: 1rem;
   }
 `;
