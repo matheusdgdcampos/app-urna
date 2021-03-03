@@ -1,15 +1,10 @@
 import { createContext, useContext, FC, useState, useCallback } from 'react';
 
+import { UserProps } from '~/models';
 import api from '~/services/api';
 
-interface User {
-  codigo: string;
-  votou: boolean;
-  tipo: 'standard' | 'admin';
-}
-
 interface AuthContextProps {
-  user: User | null;
+  user: UserProps | null;
   signIn(codigo: string): Promise<void>;
   signOut(): void;
 }
@@ -17,7 +12,7 @@ interface AuthContextProps {
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 export const AuthProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<User | null>(() => {
+  const [user, setUser] = useState<UserProps | null>(() => {
     const verifiUserIsStorage = JSON.parse(
       String(localStorage.getItem('@urna')),
     ) as User;
@@ -30,7 +25,7 @@ export const AuthProvider: FC = ({ children }) => {
   });
 
   const signIn = useCallback(async (codigo: string) => {
-    const response = await api.post<User>('/auth', { codigo });
+    const response = await api.post<UserProps>('/auth', { codigo });
 
     localStorage.setItem('@urna', JSON.stringify(response.data));
 

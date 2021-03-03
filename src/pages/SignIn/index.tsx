@@ -36,7 +36,6 @@ const SignIn = () => {
       const schema = Yup.object().shape({
         codigo: Yup.string().required(),
       });
-      console.log(data);
 
       await schema.validate(data);
 
