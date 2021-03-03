@@ -35,6 +35,7 @@
     "no-console": "off",
     "camelcase": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react/button-has-type": "off",
     "react/jsx-pascal-case": "off",
     "no-unused-expressions": "off",
     "no-use-before-define": "off",
@@ -50,9 +51,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".tsx"
-        ]
+        "extensions": [".tsx"]
       }
     ],
     "@typescript-eslint/camelcase": "off",
@@ -75,22 +74,11 @@
       {
         "newlinesBetween": "always",
         "groups": [
-          [
-            "/^react$/",
-            "/^react-native$/"
-          ],
+          ["/^react$/", "/^react-native$/"],
           "module",
-          [
-            "/^~/"
-          ],
-          [
-            "parent",
-            "sibling",
-            "index"
-          ],
-          [
-            "/./styles/"
-          ]
+          ["/^~/"],
+          ["parent", "sibling", "index"],
+          ["/./styles/"]
         ],
         "alphabetize": {
           "order": "asc",

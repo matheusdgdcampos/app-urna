@@ -15,7 +15,7 @@ export const AuthProvider: FC = ({ children }) => {
   const [user, setUser] = useState<UserProps | null>(() => {
     const verifiUserIsStorage = JSON.parse(
       String(localStorage.getItem('@urna')),
-    ) as User;
+    ) as UserProps;
 
     if (verifiUserIsStorage) {
       return verifiUserIsStorage;

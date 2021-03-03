@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CustonRoute, HeaderAdmin, HeaderSignIn } from '~/components';
 import { useAuth } from '~/hooks/auth';
 
-import { SignIn, Voto } from '../pages';
+import { SignIn, Voto, CandidateList } from '../pages';
 
 const Routes = () => {
   const { user } = useAuth();
@@ -26,6 +26,11 @@ const Routes = () => {
               role={user?.tipo ?? 'admin'}
               path="/dashboard"
               component={Voto}
+            />
+            <CustonRoute
+              role={user?.tipo ?? 'admin'}
+              path="/candidatos"
+              component={CandidateList}
             />
           </HeaderAdmin>
         )}
