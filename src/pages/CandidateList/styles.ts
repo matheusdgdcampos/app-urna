@@ -5,7 +5,8 @@ export const Container = styled.section`
   justify-content: center;
   align-items: center;
 
-  flex: 1;
+  width: 100%;
+  height: 100%;
 `;
 
 export const EmptyCandidateContent = styled.fieldset`
@@ -13,11 +14,17 @@ export const EmptyCandidateContent = styled.fieldset`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: none;
+
+  width: 100%;
+  height: auto;
+
+  margin: auto;
 `;
 
 export const TextDescription = styled.span`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: 'Roboto', sans-serif;
-  line-height: 28.13;
   color: #000;
+  margin-bottom: 116px;
 `;

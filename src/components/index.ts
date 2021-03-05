@@ -3,3 +3,4 @@ export { default as HeaderSignIn } from './HeaderSignIn';
 export { default as HeaderAdmin } from './HeaderAdmin';
 export { default as Input } from './Input';
 export { default as Button } from './Button';
+export { default as Dropzone } from './Dropzone';

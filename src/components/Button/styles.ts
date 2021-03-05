@@ -24,7 +24,7 @@ export const CustonButton = styled.button<ButtonProps>`
       : css`
           background: ${theme.colors.orange_dark};
         `}
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: 'Ubuntu';
   ${({ isTextBold }) =>
     isTextBold
@@ -37,4 +37,11 @@ export const CustonButton = styled.button<ButtonProps>`
 
   width: 100%;
   height: 73px;
+  border-radius: 10px;
+  border: none;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 85%;
+  }
 `;

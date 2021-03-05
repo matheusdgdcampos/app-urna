@@ -1,5 +1,7 @@
 import React, { HtmlHTMLAttributes } from 'react';
 
+import { CSSProperties } from 'styled-components';
+
 import { CustonButton } from './styles';
 
 interface ButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
@@ -10,6 +12,7 @@ interface ButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
   maxHeight?: string | number;
   isTextBold?: boolean;
   type: 'button' | 'reset' | 'submit';
+  extraStyles?: CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   textContent,
   isTextBold,
   type,
+  extraStyles,
   ...rest
 }) => {
   return (
@@ -27,6 +31,7 @@ const Button: React.FC<ButtonProps> = ({
       style={{
         maxHeight: maxHeight ?? '',
         maxWidth: maxWidth ?? '',
+        ...extraStyles,
       }}
       isTextBold={isTextBold}
       backgroundColor={backgroundColor}
