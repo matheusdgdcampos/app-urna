@@ -5,17 +5,23 @@ export const Container = styled.div`
   height: 100%;
   border-radius: 10px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   > img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   > p {
-    width: calc(100% - 60px);
-    height: calc(100% - 60px);
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
     border-radius: 10px;
     border: 1px dashed ${({ theme }) => theme.colors.orange};
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
 
     display: flex;
     flex-direction: column;

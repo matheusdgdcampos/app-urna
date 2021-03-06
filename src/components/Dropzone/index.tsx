@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 
 import { useDropzone } from 'react-dropzone';
 import { FiUpload } from 'react-icons/fi';
@@ -13,8 +13,9 @@ const Dropzone: React.FC<DropzoneProps> = ({ fileUpload }) => {
   const [selectedFileUrl, setSelectedFileUrl] = useState('');
 
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
+    (acceptedFiles) => {
       const file = acceptedFiles[0];
+      console.log(file);
 
       const fileURL = URL.createObjectURL(file);
       setSelectedFileUrl(fileURL);
@@ -24,13 +25,13 @@ const Dropzone: React.FC<DropzoneProps> = ({ fileUpload }) => {
   );
 
   const { getInputProps, getRootProps } = useDropzone({
-    accept: ['*.jpg', '*.png'],
+    accept: 'image/*',
     onDrop,
   });
 
   return (
     <Container {...getRootProps()}>
-      <input {...getInputProps()} />
+      <input {...getInputProps()} accept="image/*" />
 
       {selectedFileUrl ? (
         <img src={selectedFileUrl} alt="Avatar" />
@@ -44,4 +45,4 @@ const Dropzone: React.FC<DropzoneProps> = ({ fileUpload }) => {
   );
 };
 
-export default Dropzone;
+export default memo(Dropzone);
