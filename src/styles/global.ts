@@ -7,6 +7,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     outline: 0;
+    font-family: 'Roboto', sans-serif;
   }
 
   html, body, #root {

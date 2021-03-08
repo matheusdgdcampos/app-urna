@@ -28,3 +28,54 @@ export const TextDescription = styled.span`
   color: #000;
   margin-bottom: 116px;
 `;
+
+export const TableContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 897px;
+  margin: auto;
+
+  table {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+`;
+
+export const Tableheader = styled.thead`
+  tr {
+    > th {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    th {
+      font-size: 1.2rem;
+      font-family: 'Roboto', sans-serif;
+      padding: 10px;
+      background: ${({ theme }) => theme.colors.black};
+      color: ${({ theme }) => theme.colors.white};
+      border: none;
+    }
+  }
+`;
+
+export const TableBody = styled.tbody`
+  tr {
+    td {
+      font-size: 1rem;
+      font-family: 'Roboto', sans-serif;
+      padding: 10px;
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+`;

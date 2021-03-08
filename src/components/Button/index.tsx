@@ -1,11 +1,11 @@
-import React, { HtmlHTMLAttributes } from 'react';
+import React, { HtmlHTMLAttributes, ReactNode } from 'react';
 
 import { CSSProperties } from 'styled-components';
 
 import { CustonButton } from './styles';
 
 interface ButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
-  textContent: string;
+  textContent: ReactNode;
   textColor?: string;
   backgroundColor?: string;
   maxWidth?: string | number;

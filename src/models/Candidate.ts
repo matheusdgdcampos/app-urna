@@ -1,7 +1,8 @@
 interface CandidateProps {
-  id: string;
+  _id: string;
   chapa: string;
   codigo: number;
+  avatar: string;
   votos: number;
 }
 

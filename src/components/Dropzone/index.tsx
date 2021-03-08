@@ -7,9 +7,13 @@ import { Container } from './styles';
 
 interface DropzoneProps {
   fileUpload(file: File): void;
+  fileURL?: string;
 }
 
-const Dropzone: React.FC<DropzoneProps> = ({ fileUpload }) => {
+const Dropzone: React.FC<DropzoneProps> = ({
+  fileUpload,
+  fileURL: FileLoaderURL,
+}) => {
   const [selectedFileUrl, setSelectedFileUrl] = useState('');
 
   const onDrop = useCallback(
@@ -33,8 +37,11 @@ const Dropzone: React.FC<DropzoneProps> = ({ fileUpload }) => {
     <Container {...getRootProps()}>
       <input {...getInputProps()} accept="image/*" />
 
-      {selectedFileUrl ? (
-        <img src={selectedFileUrl} alt="Avatar" />
+      {selectedFileUrl || FileLoaderURL ? (
+        <img
+          src={selectedFileUrl.length !== 0 ? selectedFileUrl : FileLoaderURL}
+          alt="Avatar"
+        />
       ) : (
         <p>
           <FiUpload />
