@@ -1,11 +1,12 @@
-import React, { HtmlHTMLAttributes, ReactNode } from 'react';
+import React, { HtmlHTMLAttributes, ComponentType } from 'react';
 
+import { IconBaseProps } from 'react-icons';
 import { CSSProperties } from 'styled-components';
 
 import { CustonButton } from './styles';
 
 interface ButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
-  textContent: ReactNode;
+  textContent?: string;
   textColor?: string;
   backgroundColor?: string;
   maxWidth?: string | number;
@@ -13,6 +14,8 @@ interface ButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
   isTextBold?: boolean;
   type: 'button' | 'reset' | 'submit';
   extraStyles?: CSSProperties;
+  icon?: ComponentType<IconBaseProps>;
+  iconColor?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -24,6 +27,8 @@ const Button: React.FC<ButtonProps> = ({
   isTextBold,
   type,
   extraStyles,
+  icon: Icon,
+  iconColor,
   ...rest
 }) => {
   return (
@@ -39,6 +44,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       {...rest}
     >
+      {Icon && <Icon size={20} color={iconColor} />}
       {textContent}
     </CustonButton>
   );

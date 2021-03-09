@@ -102,7 +102,8 @@ const CandidateList = () => {
                       maxHeight={40}
                       type="button"
                       backgroundColor="#F7941E"
-                      textContent={<FaRegEdit size={20} color="#fff" />}
+                      icon={FaRegEdit}
+                      iconColor="#fff"
                       onClick={() => handleEditCandidate(candidate._id)}
                     />
                     <Button
@@ -110,7 +111,8 @@ const CandidateList = () => {
                       maxHeight={40}
                       type="button"
                       backgroundColor="#FD5C5C"
-                      textContent={<FaTrashAlt size={20} color="#fff" />}
+                      icon={FaTrashAlt}
+                      iconColor="#fff"
                       onClick={() => handleDeleteCandidate(candidate._id)}
                     />
                   </td>

@@ -9,6 +9,7 @@ import {
   CandidateList,
   SignUpCandidate,
   EditCandidate,
+  SignUpUser,
 } from '../pages';
 
 const Routes = () => {
@@ -47,6 +48,11 @@ const Routes = () => {
               role={user?.tipo ?? 'admin'}
               path="/editar/:_id/candidato"
               component={EditCandidate}
+            />
+            <CustonRoute
+              role={user?.tipo ?? 'admin'}
+              path="/usuarios/cadastrar"
+              component={SignUpUser}
             />
           </HeaderAdmin>
         )}

@@ -18,6 +18,7 @@ interface InputProps extends HtmlHTMLAttributes<HTMLInputElement> {
   icon?: ComponentType<IconBaseProps>;
   extraStyles?: CSSProperties;
   disabled?: boolean;
+  readonly?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -25,6 +26,7 @@ const Input: React.FC<InputProps> = ({
   icon: Icon,
   extraStyles,
   disabled,
+  readonly,
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -65,6 +67,7 @@ const Input: React.FC<InputProps> = ({
         defaultValue={defaultValue}
         ref={inputRef}
         disabled={disabled}
+        readOnly={readonly}
         {...rest}
       />
     </Container>

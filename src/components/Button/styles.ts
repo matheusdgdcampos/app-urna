@@ -7,6 +7,10 @@ interface ButtonProps {
 }
 
 export const CustonButton = styled.button<ButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 10px;
   ${({ textColor }) =>
     textColor
@@ -43,5 +47,9 @@ export const CustonButton = styled.button<ButtonProps>`
 
   &:hover {
     opacity: 85%;
+  }
+
+  > svg {
+    margin-right: 10px;
   }
 `;

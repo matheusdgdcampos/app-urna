@@ -26,7 +26,7 @@ const HeaderAdmin = ({ children }: HeaderAdminProps) => {
         <LinkContainer>
           <Link to="/dashboard">Início</Link>
           <Link to="/apuracao">Apuração</Link>
-          <Link to="/usuarios">Usuários</Link>
+          <Link to="/usuarios/cadastrar">Cadastrar usuário</Link>
           <Link to="/candidatos">Candidatos</Link>
           <Link to="/" onClick={handleSignOut}>
             Sair
