@@ -16,6 +16,7 @@ interface ButtonProps extends HtmlHTMLAttributes<HTMLButtonElement> {
   extraStyles?: CSSProperties;
   icon?: ComponentType<IconBaseProps>;
   iconColor?: string;
+  iconSize?: number;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -29,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({
   extraStyles,
   icon: Icon,
   iconColor,
+  iconSize = 20,
   ...rest
 }) => {
   return (
@@ -44,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       {...rest}
     >
-      {Icon && <Icon size={20} color={iconColor} />}
+      {Icon && <Icon size={iconSize} color={iconColor} />}
       {textContent}
     </CustonButton>
   );

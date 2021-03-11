@@ -19,6 +19,7 @@ interface InputProps extends HtmlHTMLAttributes<HTMLInputElement> {
   extraStyles?: CSSProperties;
   disabled?: boolean;
   readonly?: boolean;
+  uppercase?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -27,6 +28,7 @@ const Input: React.FC<InputProps> = ({
   extraStyles,
   disabled,
   readonly,
+  uppercase,
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -68,6 +70,7 @@ const Input: React.FC<InputProps> = ({
         ref={inputRef}
         disabled={disabled}
         readOnly={readonly}
+        uppercase={uppercase}
         {...rest}
       />
     </Container>

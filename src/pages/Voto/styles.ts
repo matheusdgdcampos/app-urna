@@ -56,23 +56,6 @@ export const Display_ConfirmButtonVote = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  button {
-    background: ${({ theme }) => theme.colors.orange_dark};
-    color: #fff;
-    padding: 20px 60px;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 400;
-
-    border: none;
-    border-radius: 10px;
-
-    transition: filter 0.2s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
-  }
 `;
 
 export const NumberButtonsContainer = styled.div`
@@ -147,4 +130,64 @@ export const ClearFieldAction = styled(CancelAction)`
 export const ConfirmAction = styled(CancelAction)`
   background: #37a442;
   color: #fff;
+`;
+
+export const ContentContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const AvatarContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CandidateAvatar = styled.img`
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+`;
+
+export const CandidateInfoContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 50px;
+
+  width: 100%;
+  height: 100%;
+`;
+
+export const InfoLabel = styled.span`
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+
+  &:nth-child(2) {
+    margin-top: 15px;
+  }
+`;
+
+export const InfoSpan = styled.span`
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: #000;
+
+  font-weight: 400;
+  margin-top: 10px;
+`;
+
+export const ContentCentered = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto;
+
+  width: 100%;
+  height: 100%;
 `;

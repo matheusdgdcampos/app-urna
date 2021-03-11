@@ -6,6 +6,10 @@ interface ContainerProps {
   isFilled: boolean;
 }
 
+interface InputProps {
+  uppercase?: boolean;
+}
+
 export const Container = styled.div<ContainerProps>`
   width: 100%;
   height: 100%;
@@ -70,9 +74,15 @@ export const Container = styled.div<ContainerProps>`
   }
 `;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<InputProps>`
   border: none;
   font-family: 'Roboto', sans-serif;
   background: #fff;
   width: 100%;
+  ${({ uppercase }) =>
+    uppercase
+      ? css`
+          text-transform: uppercase;
+        `
+      : null}
 `;

@@ -45,6 +45,7 @@ const SignIn = () => {
         autoDismiss: true,
         appearance: 'success',
       });
+
       history.push('/dashboard');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {

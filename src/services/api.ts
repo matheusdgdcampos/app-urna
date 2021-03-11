@@ -1,7 +1,9 @@
 import Axios from 'axios';
 
+const baseURL = 'https://urna-api-v1.herokuapp.com';
+
 const api = Axios.create({
-  baseURL: 'https://urna-api-v1.herokuapp.com',
+  baseURL,
 });
 
 export default api;

@@ -60,7 +60,7 @@ const CandidateList = () => {
           setCandidates(response.data);
 
           return addToast('Candidato deletado com sucesso', {
-            appearance: 'error',
+            appearance: 'success',
             autoDismiss: true,
           });
         }

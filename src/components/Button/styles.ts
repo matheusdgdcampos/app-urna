@@ -4,6 +4,7 @@ interface ButtonProps {
   textColor?: string;
   backgroundColor?: string;
   isTextBold?: boolean;
+  textContent?: string;
 }
 
 export const CustonButton = styled.button<ButtonProps>`
@@ -49,7 +50,12 @@ export const CustonButton = styled.button<ButtonProps>`
     opacity: 85%;
   }
 
-  > svg {
-    margin-right: 10px;
-  }
+  ${({ textContent }) =>
+    textContent
+      ? css`
+          > svg {
+            margin-right: 10px;
+          }
+        `
+      : null}
 `;

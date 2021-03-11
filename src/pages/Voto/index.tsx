@@ -1,9 +1,16 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import { useToasts } from 'react-toast-notifications';
+import Swal from 'sweetalert2';
+import * as Yup from 'yup';
 
-import { Input } from '~/components';
+import { Input, Button, Loader } from '~/components';
+import { useAuth } from '~/hooks/auth';
+import { CandidateProps } from '~/models';
+import api from '~/services/api';
+import getValidationsError from '~/utils/getValidationsError';
 
 import {
   Container,
@@ -19,42 +26,160 @@ import {
   ClearFieldAction,
   ConfirmAction,
   FireButtonActions,
+  CandidateAvatar,
+  AvatarContent,
+  ContentContainer,
+  CandidateInfoContent,
+  InfoLabel,
+  InfoSpan,
+  ContentCentered,
 } from './styles';
 
+interface DataForm {
+  codigo: string;
+}
+
 const Voto = () => {
+  const [loading, setLoading] = useState(false);
+  const [candidate, setCandidate] = useState<CandidateProps>(
+    {} as CandidateProps,
+  );
+
   const formRef = useRef<FormHandles>(null);
+  const { addToast } = useToasts();
+  const { user, signOut } = useAuth();
 
   const handleInsertInputValue = useCallback((input: string) => {
     formRef.current?.setData({
-      candidato: formRef.current?.getFieldValue('candidato') + input,
+      codigo: formRef.current?.getFieldValue('codigo') + input,
     });
   }, []);
 
   const handleClearFieldValue = useCallback(() => {
-    formRef.current?.clearField('candidato');
+    formRef.current?.clearField('codigo');
   }, []);
+
+  const handleCancelOperation = useCallback(() => {
+    formRef.current?.clearField('codigo');
+    setCandidate({} as CandidateProps);
+  }, []);
+
+  const handleSearchCandidate = useCallback(async () => {
+    try {
+      setLoading(true);
+
+      const candidateInput = formRef.current?.getFieldValue('codigo');
+
+      if (!candidateInput) {
+        await Swal.fire({
+          title: 'Atenção!',
+          text: 'É necessário inserir o código do candidato para continuar',
+          icon: 'info',
+        });
+      }
+
+      const response = await api.get(`candidatos/${candidateInput}/show`);
+
+      setCandidate(response.data);
+    } catch {
+      await Swal.fire({
+        title: 'Erro!',
+        text: 'Candidato não cadastrado',
+        icon: 'error',
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const handleSubmit = useCallback(
+    async (data: DataForm) => {
+      try {
+        const parseCodeForNumber = {
+          codigo: Number(data.codigo),
+        };
+
+        const schema = Yup.object().shape({
+          codigo: Yup.number().required(),
+        });
+
+        await schema.validate(parseCodeForNumber);
+
+        await api.put(`candidatos/${user?._id}/voto`, parseCodeForNumber);
+
+        const result = await Swal.fire({
+          title: 'Voto registrado com sucesso!',
+          text:
+            'Obrigato por contribuir com o seu voto, você será deslogado da plataforma, fique atento aos resultados da apuração.',
+          icon: 'success',
+        });
+
+        if (result.isConfirmed && user?.tipo === 'standard') {
+          signOut();
+        }
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          const errors = getValidationsError(error);
+
+          formRef.current?.setErrors(errors);
+
+          addToast('Não foi possível votar neste candidato, tente novamente.', {
+            appearance: 'error',
+            autoDismiss: true,
+          });
+        }
+      }
+    },
+    [addToast, signOut, user?._id, user?.tipo],
+  );
 
   return (
     <Container>
       <Display>
-        <Form ref={formRef} onSubmit={() => console.log('foi')}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <Display_Label>Código do candidato:</Display_Label>
           <Input
             extraStyles={{
               maxWidth: 412,
               marginLeft: 130,
             }}
-            name="candidato"
+            name="codigo"
             disabled
           />
           <Display_InfoCandidateLabel>
             Dados do candidato:
           </Display_InfoCandidateLabel>
 
-          <Display_CandidateInformations>teste</Display_CandidateInformations>
+          <Display_CandidateInformations>
+            {Object.keys(candidate).length === 0 ? null : loading ? (
+              <ContentCentered>
+                <Loader isLoading={loading} size={16} />
+              </ContentCentered>
+            ) : (
+              <ContentContainer>
+                <AvatarContent>
+                  <CandidateAvatar src={candidate.avatar} />
+                </AvatarContent>
+
+                <CandidateInfoContent>
+                  <InfoLabel>
+                    Chapa: <InfoSpan>{candidate.chapa}</InfoSpan>
+                  </InfoLabel>
+                  <InfoLabel>
+                    Código: <InfoSpan>{candidate.codigo}</InfoSpan>
+                  </InfoLabel>
+                </CandidateInfoContent>
+              </ContentContainer>
+            )}
+          </Display_CandidateInformations>
 
           <Display_ConfirmButtonVote>
-            <button type="button">Confirmar</button>
+            <Button
+              type="submit"
+              textContent="Confirmar"
+              maxWidth="223px"
+              maxHeight="63px"
+            />
           </Display_ConfirmButtonVote>
         </Form>
       </Display>
@@ -94,11 +219,13 @@ const Voto = () => {
         </NumberButtonsContainer>
 
         <FireButtonActions>
-          <CancelAction onClick={handleClearFieldValue}>cancelar</CancelAction>
+          <CancelAction onClick={handleCancelOperation}>cancelar</CancelAction>
           <ClearFieldAction onClick={handleClearFieldValue}>
             limpar
           </ClearFieldAction>
-          <ConfirmAction>confirmar</ConfirmAction>
+          <ConfirmAction onClick={handleSearchCandidate}>
+            confirmar
+          </ConfirmAction>
         </FireButtonActions>
       </ActionContainer>
     </Container>

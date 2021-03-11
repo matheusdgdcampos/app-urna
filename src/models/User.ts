@@ -1,5 +1,5 @@
 interface UserProps {
-  id: string;
+  _id: string;
   codigo: string;
   votou: boolean;
   tipo: 'standard' | 'admin';

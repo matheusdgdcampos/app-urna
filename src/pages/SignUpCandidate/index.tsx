@@ -92,12 +92,20 @@ const SignUpCandidate = () => {
               icon={() => <FaUserTie size={24} />}
               name="chapa"
               placeholder="Nome da chapa"
+              uppercase
             />
             <Input
               extraStyles={{ marginTop: 17 }}
               name="codigo"
               placeholder="Código"
               icon={() => <RiLockPasswordFill size={24} />}
+              onChange={() => {
+                const candidateCode = String(
+                  formRef.current?.getFieldValue('codigo'),
+                );
+                const replacedValue = candidateCode.replace(/\D/gi, '');
+                formRef.current?.setFieldValue('codigo', replacedValue);
+              }}
             />
             <Button
               extraStyles={{

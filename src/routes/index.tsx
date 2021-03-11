@@ -10,6 +10,7 @@ import {
   SignUpCandidate,
   EditCandidate,
   SignUpUser,
+  Counting,
 } from '../pages';
 
 const Routes = () => {
@@ -53,6 +54,11 @@ const Routes = () => {
               role={user?.tipo ?? 'admin'}
               path="/usuarios/cadastrar"
               component={SignUpUser}
+            />
+            <CustonRoute
+              role={user?.tipo ?? 'admin'}
+              path="/apuracao"
+              component={Counting}
             />
           </HeaderAdmin>
         )}
