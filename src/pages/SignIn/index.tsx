@@ -39,14 +39,7 @@ const SignIn = () => {
 
       await schema.validate(data);
 
-      await signIn(data.codigo);
-
-      addToast('Logado com sucesso!', {
-        autoDismiss: true,
-        appearance: 'success',
-      });
-
-      history.push('/dashboard');
+      await signIn(data.codigo, addToast, history.push);
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationsError(error);
