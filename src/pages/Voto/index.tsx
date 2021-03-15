@@ -6,7 +6,7 @@ import { useToasts } from 'react-toast-notifications';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 
-import { Input, Button, Loader } from '~/components';
+import { Button, Loader } from '~/components';
 import { useAuth } from '~/hooks/auth';
 import { CandidateProps } from '~/models';
 import api from '~/services/api';
@@ -33,6 +33,7 @@ import {
   InfoLabel,
   InfoSpan,
   ContentCentered,
+  InputCodeCandidate,
 } from './styles';
 
 interface DataForm {
@@ -138,19 +139,12 @@ const Voto = () => {
       <Display>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Display_Label>Código do candidato:</Display_Label>
-          <Input
-            extraStyles={{
-              maxWidth: 412,
-              marginLeft: 130,
-            }}
-            name="codigo"
-            disabled
-          />
+          <InputCodeCandidate name="codigo" disabled />
           <Display_InfoCandidateLabel>
             Dados do candidato:
           </Display_InfoCandidateLabel>
 
-          <Display_CandidateInformations>
+          <Display_CandidateInformations candidate={candidate}>
             {Object.keys(candidate).length === 0 ? null : loading ? (
               <ContentCentered>
                 <Loader isLoading={loading} size={16} />

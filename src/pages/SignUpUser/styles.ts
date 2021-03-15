@@ -41,6 +41,10 @@ export const GenerateCodeField = styled.div`
     flex-direction: column;
     justify-content: space-between;
   }
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+  }
 `;
 
 export const TypeUserField = styled.div`
@@ -48,6 +52,11 @@ export const TypeUserField = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const Label = styled.span`
@@ -74,6 +83,10 @@ export const CheckBoxContainer = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   margin-top: 10px;
+
+  @media (max-width: 760px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const CustonForm = styled(Form)`

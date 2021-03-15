@@ -26,6 +26,13 @@ export const RegisterContainer = styled.fieldset`
   background: #f0f0f0;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: max-content;
+  }
 `;
 
 export const AvatarContainer = styled.div`
@@ -34,6 +41,10 @@ export const AvatarContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 760px) {
+    padding: 0;
+  }
 `;
 
 export const Dropzone = styled.div`
@@ -50,6 +61,13 @@ export const Dropzone = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+
+  @media (max-width: 760px) {
+    max-width: auto;
+    max-height: auto;
+    margin-bottom: 25px;
+    height: 300px;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -57,6 +75,10 @@ export const FormContainer = styled.div`
   flex-direction: column;
 
   padding: 40px;
+
+  @media (max-width: 760px) {
+    padding: 0;
+  }
 `;
 
 export const TitleRegister = styled.h2`

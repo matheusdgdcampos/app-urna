@@ -1,7 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { Input } from '~/components';
+import { CandidateProps } from '~/models';
+
+interface CandidateInformationsProps {
+  candidate: CandidateProps;
+}
 
 export const Container = styled.div`
   display: flex;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+  }
 `;
 
 export const Display = styled.div`
@@ -12,6 +23,15 @@ export const Display = styled.div`
   padding: 30px;
 
   height: 100vh;
+
+  @media (max-width: 760px) {
+    flex: auto;
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ActionContainer = styled.div`
@@ -23,6 +43,11 @@ export const ActionContainer = styled.div`
   align-items: center;
 
   height: 100vh;
+
+  @media (max-width: 760px) {
+    padding: 15px 0;
+    flex: auto;
+  }
 `;
 
 export const Display_Label = styled.span`
@@ -31,13 +56,26 @@ export const Display_Label = styled.span`
   font-weight: 400;
   line-height: 2.8;
   margin-left: 130px;
+
+  @media (max-width: 760px) {
+    margin-left: 0;
+  }
+`;
+
+export const InputCodeCandidate = styled(Input)`
+  max-width: 412px;
+  margin-left: 130px;
+
+  @media (max-width: 760px) {
+    margin-left: 0;
+  }
 `;
 
 export const Display_InfoCandidateLabel = styled(Display_Label)`
   margin: 30px 0 0 0;
 `;
 
-export const Display_CandidateInformations = styled.div`
+export const Display_CandidateInformations = styled.div<CandidateInformationsProps>`
   background: #f0f0f0;
   width: 100%;
   height: 100%;
@@ -50,6 +88,15 @@ export const Display_CandidateInformations = styled.div`
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+
+  @media (max-width: 760px) {
+    ${({ candidate }) =>
+      Object.keys(candidate).length > 0
+        ? null
+        : css`
+            padding: 100px;
+          `}
+  }
 `;
 
 export const Display_ConfirmButtonVote = styled.div`
@@ -103,6 +150,10 @@ export const FireButtonActions = styled.div`
   gap: 40px;
 
   margin-top: 100px;
+
+  @media (max-width: 760px) {
+    gap: 10px;
+  }
 `;
 
 export const CancelAction = styled.button`
@@ -120,6 +171,11 @@ export const CancelAction = styled.button`
   &:hover {
     filter: opacity(0.9);
   }
+
+  @media (max-width: 760px) {
+    font-size: 1rem;
+    padding: 12px;
+  }
 `;
 
 export const ClearFieldAction = styled(CancelAction)`
@@ -136,6 +192,11 @@ export const ContentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const AvatarContent = styled.div`
@@ -159,6 +220,10 @@ export const CandidateInfoContent = styled.div`
 
   width: 100%;
   height: 100%;
+
+  @media (max-width: 760px) {
+    margin-top: -50px;
+  }
 `;
 
 export const InfoLabel = styled.span`
