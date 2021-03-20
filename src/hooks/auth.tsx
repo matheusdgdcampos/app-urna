@@ -14,6 +14,7 @@ interface AuthContextProps {
     push: (path: string, state?: unknown) => void,
   ): Promise<void>;
   signOut(): void;
+  updateUserVoteState(): void;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -90,8 +91,26 @@ export const AuthProvider: FC = ({ children }) => {
     setUser(null);
   }, []);
 
+  const updateUserVoteState = useCallback(() => {
+    if (user) {
+      const updatedUser = {
+        _id: user._id,
+        codigo: user.codigo,
+        tipo: user.tipo,
+        votou: true,
+      };
+
+      setUser(updatedUser);
+
+      localStorage.removeItem('@urna');
+      localStorage.setItem('@urna', JSON.stringify(updatedUser));
+    }
+  }, [user]);
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user, signIn, signOut, updateUserVoteState }}
+    >
       {children}
     </AuthContext.Provider>
   );

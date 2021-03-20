@@ -48,7 +48,7 @@ const Voto = () => {
 
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToasts();
-  const { user, signOut } = useAuth();
+  const { user, signOut, updateUserVoteState } = useAuth();
 
   const handleInsertInputValue = useCallback((input: string) => {
     formRef.current?.setData({
@@ -105,6 +105,20 @@ const Voto = () => {
         });
 
         await schema.validate(parseCodeForNumber);
+        console.log('votou o danado', user?.votou);
+
+        if (user?.votou) {
+          const resultError = await Swal.fire({
+            title: 'Desculpe',
+            text: 'Você já realizou seu voto.',
+            icon: 'error',
+          });
+
+          if (resultError.isConfirmed) {
+            handleCancelOperation();
+            return;
+          }
+        }
 
         await api.put(`candidatos/${user?._id}/voto`, parseCodeForNumber);
 
@@ -114,6 +128,8 @@ const Voto = () => {
             'Obrigato por contribuir com o seu voto, você será deslogado da plataforma, fique atento aos resultados da apuração.',
           icon: 'success',
         });
+
+        updateUserVoteState();
 
         if (result.isConfirmed && user?.tipo === 'standard') {
           signOut();
@@ -131,7 +147,15 @@ const Voto = () => {
         }
       }
     },
-    [addToast, signOut, user?._id, user?.tipo],
+    [
+      addToast,
+      handleCancelOperation,
+      signOut,
+      updateUserVoteState,
+      user?._id,
+      user?.tipo,
+      user?.votou,
+    ],
   );
 
   return (
